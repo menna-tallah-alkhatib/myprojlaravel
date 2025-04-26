@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>message</title>
+    <style>
+        body {
+            background-color: #f0f8ff; 
+            font-family: 'Arial', sans-serif; 
+            text-align: center; 
+            padding-top: 50px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 36px;
+        }
+    </style>
+</head>
+<body>
+    <h1> تمام وصلت الرسالة </h1>
+</body>
+</html>

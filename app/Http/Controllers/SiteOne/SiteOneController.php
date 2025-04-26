@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\SiteOne;
-
+use App\Models\Contact;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -20,9 +20,35 @@ class SiteOneController extends Controller
         
     function contact(){ 
         return view('SiteOne.contact');}
+    function ok(){ 
+            return view('SiteOne.ok');}
+    function viewcontact(){ 
+                $contact=Contact::all();
+                return view('SiteOne.view_contact',compact('contact'));}
         
     function postcontact(Request $request){ 
-        dd($request->all());
-       }
+        // dd($request->all());
+        $request->validate([
+         'name'=>'required',
+         'email'=>'required',
+         'phone'=>'required',
+         'image'=>'required',
+         'message'=>'nullable'
+        ]);
+         $name=time().rand().'_'.$request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('uploads'),$name);
+        
 
+        Contact::create([
+         'name'=>$request->name,
+         'email'=>$request->email,
+         'phone'=>$request->phone,
+         'image'=>$name,
+         'message'=>$request->message
+        ]);
+
+        return redirect()->route('site1.ok');
+        
+       }
+ 
     }

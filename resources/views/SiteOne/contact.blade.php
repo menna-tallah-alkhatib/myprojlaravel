@@ -14,6 +14,7 @@
             
        <!-- Contact Section Form-->
        <div class="row justify-content-center">
+              
                     <div class="col-lg-8 col-xl-7">
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
@@ -21,12 +22,24 @@
                         <!-- This form is pre-integrated with SB Forms.-->
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
+                @if($errors->any())
+                <div class="alert alert-danger" role="alert">
+                 <ul>
+                    @foreach($errors->all() as $e)
+                    <li>{{$e}}</li>
+                    @endforeach
+                </ul>
+                </div>
+                @endif
                         <!-- to get an API token!-->
-                        <form id="contactForm" method="post" action="{{route('site1.postcontact')}}">
+                        <form enctype="multipart/form-data" id="contactForm" method="post" action="{{route('site1.postcontact')}}">
                             @csrf
                             <!-- Name input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control"name="name" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                <input class="form-control @error('name') is-invalid  @enderror "name="name" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                <!-- @error('name')
+                                <small class="invalid-feedback">{{$message}}</small>
+                                @enderror -->
                                 <label for="name">Full name</label>
                                 <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                             </div>
@@ -42,6 +55,11 @@
                                 <input class="form-control" name="phone" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
                                 <label for="phone">Phone number</label>
                                 <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="image" id="image" type="file" data-sb-validations="required"/>
+                                <label for="image" >image</label>
+                                <div class="invalid-feedback" data-sb-feedback="image:required">A image is required.</div>
                             </div>
                             <!-- Message input-->
                             <div class="form-floating mb-3">

@@ -18,4 +18,6 @@ Route::prefix ('site1')->name('site1.')->controller(SiteOneController::class)->g
   Route::get('/about','about')->name('about');
   Route::get('/contact','contact')->name('contact');
   Route::post('/contact','postcontact')->name('postcontact');
+  Route::get('/ok','ok')->name('ok');
+  Route::get('/viewcontact','viewcontact')->name('viewcontact');
 });
