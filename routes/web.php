@@ -20,4 +20,6 @@ Route::prefix ('site1')->name('site1.')->controller(SiteOneController::class)->g
   Route::post('/contact','postcontact')->name('postcontact');
   Route::get('/ok','ok')->name('ok');
   Route::get('/viewcontact','viewcontact')->name('viewcontact');
+  Route::get('/edit/{id}','edit')->name('edit');
+  Route::post('/update','update')->name('update');
 });
